@@ -29,9 +29,9 @@ The text file might be either in a *.txt or a *.json format, depending on the se
 
 <!-- Describe what your project does and why it exists. -->
 
-- **Problem**: What issue does this project solve?  
-- **Solution**: How does it solve that issue?  
-- **Audience**: Who is this for?
+- **Problem**: How to serialize data from an object and save it to a file using OOP  
+- **Solution**: Using OOP & serialization methods to save user's recipes into text files
+- **Audience**: Folks interested in C#
 
 ---
 
@@ -45,9 +45,9 @@ The text file might be either in a *.txt or a *.json format, depending on the se
 
 ## Features
 
-- Feature 1: Description of feature  
-- Feature 2: Description of feature  
-- Feature 3: Description of feature
+- Feature 1: Display list of ingredients for a user to create a recipe from
+- Feature 2: Select ingredients and save as a recipe to be printed for the user
+- Feature 3: Save corresponding recipe to a text file on the user's local machine, which the application can still read from
 
 ---
 
