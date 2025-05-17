@@ -1,5 +1,5 @@
 ﻿// Main application flow
-namespace cookie_cookbook
+namespace CookieCookbook
 {
     class Program
     {
