@@ -1,7 +1,18 @@
 ﻿// Main application flow
-Console.WriteLine("Hello, World!");
+namespace cookie_cookbook
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello, World!");
+
+            // Program exit
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
+
+        }
+    }
+}
 
 
-// Program exit
-Console.WriteLine("Press any key to exit");
-Console.ReadKey();
