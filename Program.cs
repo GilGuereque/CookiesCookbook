@@ -8,13 +8,13 @@ namespace CookieCookbook
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Console.WriteLine("Create a new cookie recipe! Available ingredients are:\n");
             
             // Call PrintIngredients method to print list to the console
             PrintAvailableIngredients.PrintIngredients();
 
             // Program exit
-            Console.WriteLine("Press any key to exit");
+            Console.WriteLine("\nPress any key to exit");
             Console.ReadKey();
 
         }
