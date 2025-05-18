@@ -1,4 +1,6 @@
-﻿// Main application flow
+﻿using CookieCookbook.IngredientsList;
+
+// Main application flow
 namespace CookieCookbook
 {
     class Program
