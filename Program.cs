@@ -1,5 +1,6 @@
 ﻿using CookieCookbook.IngredientsList;
 using CookieCookbook.PrintIngredients;
+using CookieCookbook.StoreRecipes;
 
 // Main application flow
 namespace CookieCookbook
@@ -12,6 +13,10 @@ namespace CookieCookbook
             
             // Call PrintIngredients method to print list to the console
             PrintAvailableIngredients.PrintIngredients();
+
+            // Testing Serialization of Recipe object to Json file
+            var store = new StoreRecipesInFile();
+            store.SaveAndReadRecipe();
 
             // Program exit
             Console.WriteLine("\nPress any key to exit");
