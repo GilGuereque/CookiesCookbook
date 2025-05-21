@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.Json;
 using System.IO;
 
@@ -17,7 +13,8 @@ namespace CookieCookbook.StoreRecipes
 
     public class StoreRecipesInFile
     {
-        public StoreRecipesInFile() { }
+        // FullPath is now a public property, initialized in the constructor
+        public string FullPath { get; private set; }
 
         private Recipe recipe = new Recipe
         {
@@ -29,8 +26,7 @@ namespace CookieCookbook.StoreRecipes
         public const string FileName = "Recipe.json";
         public const string Folder = @"C:\Users\prakt\source\repos\CSharp\CookieCookbook";
 
-
-        public void SaveAndReadRecipe()
+        public StoreRecipesInFile()
         {
             // 1) Where is our exe running?
             string exeFolder = AppContext.BaseDirectory;
@@ -43,12 +39,14 @@ namespace CookieCookbook.StoreRecipes
             // now projectRoot is …\CookieCookbook\
 
             // 3) Build the full path to Recipe.json in the project folder
-            string FullPath = Path.Combine(projectRoot, FileName);
-
+            FullPath = Path.Combine(projectRoot, FileName);
 
             //// Create full file path
             //string FullPath = Path.Combine(Folder, FileName);
+        }
 
+        public void SaveAndReadRecipe()
+        {
             // Pretty Print the JSON:
             // 4) Serialize + save
             string jsonString = JsonSerializer.Serialize(recipe, new JsonSerializerOptions { WriteIndented = true });
