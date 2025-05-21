@@ -57,7 +57,7 @@ namespace CookieCookbook.StoreRecipes
 
             // 5) Read it back and display output & folder path
             Console.WriteLine($"Saved recipe to: {FullPath}\n");
-            Console.WriteLine(File.ReadAllText(FullPath));
+            Console.WriteLine($"File body: \n" + File.ReadAllText(FullPath));
 
             //// Read the content of the file and print it to the console
             //Console.WriteLine(File.ReadAllText(FileName));

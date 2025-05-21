@@ -1,6 +1,9 @@
 ﻿using CookieCookbook.IngredientsList;
 using CookieCookbook.PrintIngredients;
+using CookieCookbook.PrintRecipes;
 using CookieCookbook.StoreRecipes;
+//using Magnum.FileSystem;
+using System.IO;
 
 // Main application flow
 namespace CookieCookbook
@@ -18,8 +21,13 @@ namespace CookieCookbook
             var store = new StoreRecipesInFile();
             store.SaveAndReadRecipe();
 
-            // Program exit
-            Console.WriteLine("\nPress any key to exit");
+            if (File.Exists(store.FullPath))
+            {
+                Console.WriteLine($"\nPrinting available recipes from: " + store.FullPath + $"\nFile: \n" + File.ReadAllText(StoreRecipesInFile.FileName));
+            }
+
+                // Program exit
+                Console.WriteLine("\nPress any key to exit");
             Console.ReadKey();
 
         }
