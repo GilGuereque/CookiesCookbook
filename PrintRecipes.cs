@@ -16,7 +16,7 @@ namespace CookieCookbook.PrintRecipes
         public void PrintRecipe()
         {
             if (RecipesExist)
-                Console.WriteLine($"Existing recipes are: \n" + "*****{N}*****"); //TODO: Recactor method to print out multiple recipes separated by asterisks and number of recipe
+                Console.WriteLine($"Existing recipes are: \n" + "*****{N}*****"); //TODO: Refactor method to print out multiple recipes separated by asterisks and number of recipe
         }
     }
 
