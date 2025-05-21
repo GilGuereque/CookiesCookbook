@@ -16,11 +16,26 @@ namespace CookieCookbook.StoreRecipes
         // FullPath is now a public property, initialized in the constructor
         public string FullPath { get; private set; }
 
-        private Recipe recipe = new Recipe
+        public List<Recipe> recipe = new List<Recipe>
         {
-            Id = 1,
-            Name = "Butter",
-            Instructions = "This is a test recipe. Add to other ingredients"
+            new Recipe
+            {
+                Id = 1,
+                Name = "Butter",
+                Instructions = "This is a test recipe. Add to other ingredients"
+            },
+            new Recipe
+            {
+                Id = 2,
+                Name = "Rice Flour",
+                Instructions = "Sieve. Add to other ingredients."
+            },
+            new Recipe
+            {
+                Id = 3,
+                Name = "Powdered Sugar",
+                Instructions = "Sprinkle on top."
+            }
         };
 
         public const string FileName = "Recipe.json";

@@ -23,11 +23,11 @@ namespace CookieCookbook
 
             if (File.Exists(store.FullPath))
             {
-                Console.WriteLine($"\nPrinting available recipes from: " + store.FullPath + $"\nFile: \n" + File.ReadAllText(StoreRecipesInFile.FileName));
+                Console.WriteLine($"\nExisting recipes are: " + store.FullPath + $"\nFile: \n" + File.ReadAllText(StoreRecipesInFile.FileName));
             }
 
-                // Program exit
-                Console.WriteLine("\nPress any key to exit");
+            // Program exit
+            Console.WriteLine("\nPress any key to exit");
             Console.ReadKey();
 
         }
