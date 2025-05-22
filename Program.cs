@@ -2,12 +2,14 @@
 using CookieCookbook.PrintIngredients;
 using CookieCookbook.PrintRecipes;
 using CookieCookbook.StoreRecipes;
-//using Magnum.FileSystem;
-using System.IO;
 
 // Main application flow
 namespace CookieCookbook
 {
+    //// renaming main class 
+    //var cookiesRecipesApp = new CookiesRecipesApp();
+    //cookiesRecipesApp.Run();
+    
     class Program
     {
         static void Main(string[] args)
@@ -26,8 +28,28 @@ namespace CookieCookbook
                 Console.WriteLine($"\nExisting recipes are: " + store.FullPath + $"\nFile: \n" + File.ReadAllText(StoreRecipesInFile.FileName));
             }
 
-            // Program exit
-            Console.WriteLine("\nPress any key to exit");
+
+            //// high level design
+            //if (ingredients.Count > 0)
+            //{
+            //    var recipes = new Recipe(ingredients);
+            //    allRecipes.Add(recipes);
+            //    _recipesRepository.Write(filePath, allRecipes);
+
+            //    _recipesUserInteraction.ShowMessage("Recipe added:");
+            //    _recipesUserInteraction.ShowMessage(Recipe.ToString());
+            //}
+            //else
+            //{
+            //    _recipesUserInteraction.ShowMessage(
+            //        "No ingredients have been selected. " +
+            //        "Recipe will not be saved.");
+            //}
+
+            //_recipesUserInteraction.Exit();
+
+                // Program exit
+                Console.WriteLine("\nPress any key to exit");
             Console.ReadKey();
 
         }
