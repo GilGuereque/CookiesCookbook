@@ -2,12 +2,8 @@
 
 namespace CookieCookbook.PrintIngredients
 {
-    public class PrintAvailableIngredients
+    public static class PrintAvailableIngredients
     {
-        public PrintAvailableIngredients()
-        {
-        }
-
         public static void PrintIngredients()
         {
             // Print list of ingredients to the console
