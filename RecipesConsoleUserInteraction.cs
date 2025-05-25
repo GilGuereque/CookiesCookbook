@@ -5,6 +5,11 @@
         void ShowMessage(string message);
         void Exit();
     }
+
+    public interface IRecipesRepository
+    {
+
+    }
     
     public class RecipesConsoleUserInteraction : IRecipesUserInteraction
     {

@@ -1,6 +1,6 @@
-﻿using CookieCookbook.IngredientsList;
-using CookieCookbook.PrintIngredients;
+﻿using CookieCookbook.PrintIngredients;
 using CookieCookbook.PrintRecipes;
+using CookieCookbook.Recipes;
 using CookieCookbook.RecipesUserInteraction;
 using CookieCookbook.StoreRecipes;
 

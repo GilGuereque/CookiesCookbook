@@ -1,13 +1,11 @@
-﻿using CookieCookbook.IngredientsList;
-
-namespace CookieCookbook.PrintIngredients
+﻿namespace CookieCookbook.PrintIngredients
 {
     public static class PrintAvailableIngredients
     {
         public static void PrintIngredients()
         {
             // Print list of ingredients to the console
-            foreach (var ingredient in IngredientRepository.Ingredients)
+            foreach (var ingredient in Recipes.Ingredients.Ingredients)
             {
                 Console.WriteLine($"{ingredient.Id}. {ingredient.Name}");
             }
