@@ -23,8 +23,13 @@ public class CookiesRecipesApp
         _recipesRepository = recipesRepository;
         _recipesUserInteraction = recipesUserInteraction;
     }
-    public void Run()
+    public void Run(string filePath)
     {
+        var allRecipes = _recipesRepository.Read(filePath);
+        _recipesUserInteraction.PrintExistingRecipes(allRecipes);
+
+        _recipesUserInteraction.PromptToCreateRecipe();
+        
         Console.WriteLine("Create a new cookie recipe! Available ingredients are:\n");
             
         // Call PrintIngredients method to print list to the console

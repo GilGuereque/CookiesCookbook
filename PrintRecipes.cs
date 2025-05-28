@@ -1,4 +1,5 @@
-﻿using CookieCookbook.IngredientsList;
+﻿using CookieCookbook.Recipes.Ingredients;
+using CookieCookbook.Recipes;
 
 namespace CookieCookbook.PrintRecipes
 {
@@ -13,10 +14,21 @@ namespace CookieCookbook.PrintRecipes
     public class PrintAvailableRecipes : IPrintRecipes
     {
         private bool RecipesExist;
-        public void PrintRecipe()
+        public void PrintRecipe(IEnumerable<Recipe> allRecipes)
         {
-            if (RecipesExist)
-                Console.WriteLine($"Existing recipes are: \n" + "*****{N}*****"); //TODO: Refactor method to print out multiple recipes separated by asterisks and number of recipe
+            if (allRecipes.Count() > 0)
+            {
+                Console.WriteLine($"Existing recipes are:" + Environment.NewLine);
+
+                var counter = 1;
+                foreach (var recipe in allRecipes)
+                {
+                    Console.WriteLine($"*****{counter}*****");
+                    Console.WriteLine(recipe);
+                    Console.WriteLine();
+                    ++counter;
+                }
+            }
         }
     }
 
