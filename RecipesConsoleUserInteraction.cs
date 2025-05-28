@@ -9,6 +9,7 @@ namespace CookieCookbook.RecipesUserInteraction
         void Exit();
         void PrintExistingRecipes(IEnumerable<Recipe> allRecipes);
         void PromptToCreateRecipe();
+        IEnumerable<Ingredient> ReadIngredientsFromUser();
     }
 
     public class IngredientsRegister
@@ -26,6 +27,19 @@ namespace CookieCookbook.RecipesUserInteraction
             new PowderedSugar(),
             new ChocolateChips()
         };
+
+        public Ingredient GetById(int id)
+        {
+            foreach(var ingredient in All)
+            {
+                if(ingredient.Id == id)
+                {
+                    return ingredient;
+                }
+            }
+
+            return null;
+        }
     }
     
     public class RecipesConsoleUserInteraction : IRecipesUserInteraction
@@ -76,6 +90,35 @@ namespace CookieCookbook.RecipesUserInteraction
                 Console.WriteLine(ingredient);
             }
         }
+
+        public IEnumerable<Ingredient> ReadIngredientsFromUser()
+        {
+            bool shallStop = false;
+            var ingredients = new List<Ingredient>();
+
+            while(!shallStop)
+            {
+                Console.WriteLine("Add an ingredient by its ID, " +
+                    "or type anything else if finished.");
+
+                var userInput = Console.ReadLine();
+                
+                if(int.TryParse(userInput, out int id))
+                {
+                    var selectedIngredient = _ingredientsRegister.GetById(id);
+                    if(selectedIngredient is not null)
+                    {
+                        ingredients.Add(selectedIngredient);
+                    }
+                }
+                else
+                {
+                    shallStop = true;
+                }
+            }
+
+            return ingredients;
+        }
     }
 
 public interface IRecipesRepository
@@ -87,7 +130,21 @@ public interface IRecipesRepository
     {
         public List<Recipe> Read(string FilePath)
         {
-            throw new NotImplementedException();
+            return new List<Recipe>
+            {
+                new Recipe(new List<Ingredient>
+                {
+                    new WheatFlour(),
+                    new Butter(),
+                    new Sugar()
+                }),
+                new Recipe(new List<Ingredient>
+                {
+                    new CocoaPowder(),
+                    new SpeltFlour(),
+                    new Cinnamon()
+                })
+            };
         }
     }
 }

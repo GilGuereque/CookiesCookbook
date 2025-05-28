@@ -1,6 +1,7 @@
 ﻿using CookieCookbook.PrintIngredients;
 using CookieCookbook.PrintRecipes;
 using CookieCookbook.Recipes;
+using CookieCookbook.Recipes.Ingredients;
 using CookieCookbook.RecipesUserInteraction;
 using CookieCookbook.StoreRecipes;
 
@@ -31,6 +32,8 @@ public class CookiesRecipesApp
         _recipesUserInteraction.PrintExistingRecipes(allRecipes);
 
         _recipesUserInteraction.PromptToCreateRecipe();
+
+        var ingredients = _recipesUserInteraction.ReadIngredientsFromUser();
         
         Console.WriteLine("Create a new cookie recipe! Available ingredients are:\n");
             
@@ -47,22 +50,22 @@ public class CookiesRecipesApp
         }
 
 
-        //// high level design
-        //if (ingredients.Count > 0)
-        //{
-        //    var recipes = new Recipe(ingredients);
-        //    allRecipes.Add(recipes);
-        //    _recipesRepository.Write(filePath, allRecipes); // should use the print recipes class actually
+        // high level design
+        if (ingredients.Count() > 0)
+        {
+            var recipe = new CookieCookbook.Recipes.Recipe(ingredients);
+            allRecipes.Add(recipe);
+            //_recipesRepository.Write(filePath, allRecipes); // should use the print recipes class actually
 
-        //    _recipesUserInteraction.ShowMessage("Recipe added:");
-        //    _recipesUserInteraction.ShowMessage(Recipe.ToString());
-        //}
-        //else
-        //{
-        //    _recipesUserInteraction.ShowMessage(
-        //        "No ingredients have been selected. " +
-        //        "Recipe will not be saved.");
-        //}
+            _recipesUserInteraction.ShowMessage("Recipe added:");
+            _recipesUserInteraction.ShowMessage(recipe.ToString());
+        }
+        else
+        {
+            _recipesUserInteraction.ShowMessage(
+                "No ingredients have been selected. " +
+                "Recipe will not be saved.");
+        }
 
         _recipesUserInteraction.Exit();
 
