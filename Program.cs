@@ -8,8 +8,10 @@ using CookieCookbook.StoreRecipes;
 // renaming main class 
 var cookiesRecipesApp = new CookiesRecipesApp(
     new RecipesRepository(),
-    new RecipesConsoleUserInteraction());
-cookiesRecipesApp.Run();
+    new RecipesConsoleUserInteraction(
+        new IngredientsRegister()));
+
+cookiesRecipesApp.Run("recipes.json");
     
 public class CookiesRecipesApp
 {
@@ -45,22 +47,22 @@ public class CookiesRecipesApp
         }
 
 
-        // high level design
-        if (ingredients.Count > 0)
-        {
-            var recipes = new Recipe(ingredients);
-            allRecipes.Add(recipes);
-            _recipesRepository.Write(filePath, allRecipes); // should use the print recipes class actually
+        //// high level design
+        //if (ingredients.Count > 0)
+        //{
+        //    var recipes = new Recipe(ingredients);
+        //    allRecipes.Add(recipes);
+        //    _recipesRepository.Write(filePath, allRecipes); // should use the print recipes class actually
 
-            _recipesUserInteraction.ShowMessage("Recipe added:");
-            _recipesUserInteraction.ShowMessage(Recipe.ToString());
-        }
-        else
-        {
-            _recipesUserInteraction.ShowMessage(
-                "No ingredients have been selected. " +
-                "Recipe will not be saved.");
-        }
+        //    _recipesUserInteraction.ShowMessage("Recipe added:");
+        //    _recipesUserInteraction.ShowMessage(Recipe.ToString());
+        //}
+        //else
+        //{
+        //    _recipesUserInteraction.ShowMessage(
+        //        "No ingredients have been selected. " +
+        //        "Recipe will not be saved.");
+        //}
 
         _recipesUserInteraction.Exit();
 
