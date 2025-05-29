@@ -128,6 +128,13 @@ public interface IRecipesRepository
 
     public class RecipesRepository : IRecipesRepository
     {
+        private readonly IStringsRepository _stringsRepository;
+
+        public RecipesRepository(IStringsRepository stringsRepository)
+        {
+            _stringsRepository = stringsRepository;
+        }
+
         public List<Recipe> Read(string FilePath)
         {
             return new List<Recipe>
@@ -145,6 +152,22 @@ public interface IRecipesRepository
                     new Cinnamon()
                 })
             };
+        }
+
+        public void Write(string filePath, List<Recipe> allRecipes)
+        {
+            var recipesAsStrings = new List<string>();
+            foreach(var recipe in allRecipes)
+            {
+                var allIds = new List<int>();
+                foreach(var ingredient in recipe.Ingredients)
+                {
+                    allIds.Add(ingredient.Id);
+                }
+                recipesAsStrings.Add(string.Join(",", allIds));
+            }
+
+            _stringsRepository.Write(filePath, recipesAsStrings);
         }
     }
 }
