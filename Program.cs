@@ -35,7 +35,7 @@ public class CookiesRecipesApp
 
         var ingredients = _recipesUserInteraction.ReadIngredientsFromUser();
         
-        Console.WriteLine("Create a new cookie recipe! Available ingredients are:\n");
+        //Console.WriteLine("Create a new cookie recipe! Available ingredients are:\n");
             
         // Call PrintIngredients method to print list to the console
         PrintAvailableIngredients.PrintIngredients();
