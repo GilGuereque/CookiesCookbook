@@ -123,51 +123,64 @@ namespace CookieCookbook.RecipesUserInteraction
 
 public interface IRecipesRepository
 {
-    List<Recipe> Read(string FilePath);
+    List<Recipe> Read(string filePath);
+    void Write(string filePath, List<Recipe> allRecipes);
 }
 
-    public class RecipesRepository : IRecipesRepository
+public class RecipesRepository : IRecipesRepository
+{
+    private readonly IStringsRepository _stringsRepository;
+    private readonly IngredientsRegister _ingredientsRegister;
+    private const string Separator = ",";
+
+    public RecipesRepository(
+        IStringsRepository stringsRepository,
+        IngredientsRegister ingredientsRegister)
     {
-        private readonly IStringsRepository _stringsRepository;
+        _stringsRepository = stringsRepository;
+        _ingredientsRegister = ingredientsRegister;
+    }
 
-        public RecipesRepository(IStringsRepository stringsRepository)
+    public List<Recipe> Read(string filePath)
+    {
+        List<string> recipesFromFile = _stringsRepository.Read(filePath);
+        var recipes = new List<Recipe>();
+
+        foreach(var recipeFromFile in recipesFromFile)
         {
-            _stringsRepository = stringsRepository;
+            var recipe = RecipeFromString(recipeFromFile);
+            recipes.Add(recipe);
         }
 
-        public List<Recipe> Read(string FilePath)
-        {
-            return new List<Recipe>
-            {
-                new Recipe(new List<Ingredient>
-                {
-                    new WheatFlour(),
-                    new Butter(),
-                    new Sugar()
-                }),
-                new Recipe(new List<Ingredient>
-                {
-                    new CocoaPowder(),
-                    new SpeltFlour(),
-                    new Cinnamon()
-                })
-            };
-        }
+        return recipes;
+    }
 
-        public void Write(string filePath, List<Recipe> allRecipes)
-        {
-            var recipesAsStrings = new List<string>();
-            foreach(var recipe in allRecipes)
-            {
-                var allIds = new List<int>();
-                foreach(var ingredient in recipe.Ingredients)
-                {
-                    allIds.Add(ingredient.Id);
-                }
-                recipesAsStrings.Add(string.Join(",", allIds));
-            }
+    private Recipe RecipeFromString(string recipeFromFile)
+    {
+        var textualIds = recipeFromFile.Split(Separator);
+        var ingredients = new List<Ingredient>();
 
-            _stringsRepository.Write(filePath, recipesAsStrings);
+        foreach(var textualId in textualIds)
+        {
+            var id = int.Parse(textualId);
+            //?
         }
     }
+
+    public void Write(string filePath, List<Recipe> allRecipes)
+    {
+        var recipesAsStrings = new List<string>();
+        foreach(var recipe in allRecipes)
+        {
+            var allIds = new List<int>();
+            foreach(var ingredient in recipe.Ingredients)
+            {
+                allIds.Add(ingredient.Id);
+            }
+            recipesAsStrings.Add(string.Join(Separator, allIds));
+        }
+
+        _stringsRepository.Write(filePath, recipesAsStrings);
+    }
+}
 }
