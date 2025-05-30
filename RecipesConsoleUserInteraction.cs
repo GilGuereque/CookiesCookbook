@@ -173,6 +173,8 @@ public class RecipesRepository : IRecipesRepository
             var ingredient = _ingredientsRegister.GetById(id);
             ingredients.Add(ingredient);
         }
+
+        return new Recipe(ingredients);
     }
 
     public void Write(string filePath, List<Recipe> allRecipes)
