@@ -12,7 +12,14 @@ namespace CookieCookbook.RecipesUserInteraction
         IEnumerable<Ingredient> ReadIngredientsFromUser();
     }
 
-    public class IngredientsRegister
+    public interface IIngredientsRegister
+    {
+        IEnumerable<Ingredient> All { get; }
+
+        Ingredient GetById(int id);
+    }
+
+    public class IngredientsRegister : IIngredientsRegister
     {
         public IEnumerable<Ingredient> All { get; } = new List<Ingredient>
         {
@@ -30,9 +37,9 @@ namespace CookieCookbook.RecipesUserInteraction
 
         public Ingredient GetById(int id)
         {
-            foreach(var ingredient in All)
+            foreach (var ingredient in All)
             {
-                if(ingredient.Id == id)
+                if (ingredient.Id == id)
                 {
                     return ingredient;
                 }
@@ -41,7 +48,7 @@ namespace CookieCookbook.RecipesUserInteraction
             return null;
         }
     }
-    
+
     public class RecipesConsoleUserInteraction : IRecipesUserInteraction
     {
         private readonly IngredientsRegister _ingredientsRegister;
@@ -163,7 +170,8 @@ public class RecipesRepository : IRecipesRepository
         foreach(var textualId in textualIds)
         {
             var id = int.Parse(textualId);
-            //?
+            var ingredient = _ingredientsRegister.GetById(id);
+            ingredients.Add(ingredient);
         }
     }
 

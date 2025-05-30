@@ -7,12 +7,15 @@ using CookieCookbook.RecipesUserInteraction;
 using CookieCookbook.StoreRecipes;
 
 
+var ingredientsRegister = new IngredientsRegister();
+
 // renaming main class 
 var cookiesRecipesApp = new CookiesRecipesApp(
     new RecipesRepository(
-        new StringsTextualRepository()),
+        new StringsTextualRepository(),
+        ingredientsRegister),
     new RecipesConsoleUserInteraction(
-        new IngredientsRegister()));
+        ingredientsRegister));
 
 cookiesRecipesApp.Run("recipes.json");
     
