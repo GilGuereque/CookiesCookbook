@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace CookieCookbook
@@ -31,4 +32,25 @@ namespace CookieCookbook
             File.WriteAllText(filePath, string.Join(Separator, strings));
         }
     }
+
+    public class StringsJsonRepository : IStringsRepository
+    {
+        private static readonly string Separator = Environment.NewLine;
+
+        public List<string> Read(string filePath)
+        {
+            if (File.Exists(filePath))
+            {
+                var fileContents = File.ReadAllText(filePath);
+                return JsonSerializer.Deserialize<List<string>>(fileContents);
+            }
+            return new List<string>();
+        }
+
+        public void Write(string filePath, List<string> strings)
+        {
+            File.WriteAllText(filePath, JsonSerializer.Serialize(strings));
+        }
+    }
 }
+

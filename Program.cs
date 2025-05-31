@@ -12,12 +12,12 @@ var ingredientsRegister = new IngredientsRegister();
 // renaming main class 
 var cookiesRecipesApp = new CookiesRecipesApp(
     new RecipesRepository(
-        new StringsTextualRepository(),
+        new StringsJsonRepository(),
         ingredientsRegister),
     new RecipesConsoleUserInteraction(
         ingredientsRegister));
 
-cookiesRecipesApp.Run("recipes.txt");
+cookiesRecipesApp.Run("recipes.json");
     
 public class CookiesRecipesApp
 {
