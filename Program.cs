@@ -17,7 +17,7 @@ var cookiesRecipesApp = new CookiesRecipesApp(
     new RecipesConsoleUserInteraction(
         ingredientsRegister));
 
-cookiesRecipesApp.Run("recipes.json");
+cookiesRecipesApp.Run("recipes.txt");
     
 public class CookiesRecipesApp
 {
