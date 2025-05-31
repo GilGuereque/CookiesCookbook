@@ -8,20 +8,12 @@ The text file might be either in a *.txt or a *.json format, depending on the se
 ## Table of Contents
 
 1. [Description](#description)  
-2. [Demo](#demo)  
-3. [Features](#features)  
-4. [Tech Stack](#tech-stack)  
-5. [Getting Started](#getting-started)  
+2. [Features](#features)  
+3. [Tech Stack](#tech-stack)  
+4. [Getting Started](#getting-started)  
    - [Prerequisites](#prerequisites)  
    - [Installation](#installation)  
    - [Configuration](#configuration)  
-6. [Usage](#usage)  
-7. [Running Tests](#running-tests)  
-8. [Deployment](#deployment)  
-9. [Contributing](#contributing)  
-10. [License](#license)  
-11. [Authors](#authors)  
-12. [Acknowledgements](#acknowledgements)
 
 ---
 
@@ -34,12 +26,6 @@ The text file might be either in a *.txt or a *.json format, depending on the se
 - **Audience**: Folks interested in C#
 
 ---
-
-## Demo
-
-<!-- Showcase images, GIFs, or links to a running demo -->
-
-![Project demo screenshot](path/to/screenshot.png)
 
 ---
 
@@ -77,5 +63,5 @@ cd <repository>
 # For .NET backend
 dotnet restore
 
-# For frontend (if any)
-npm install
+# 3. Run console app
+
