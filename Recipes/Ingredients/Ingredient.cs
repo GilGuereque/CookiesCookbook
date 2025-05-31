@@ -9,7 +9,4 @@
 
         public override string ToString() => $"{Id}. {Name}";
     }
-    //public abstract class Ingredient : Ingredients
-    //{
-    //}
 }

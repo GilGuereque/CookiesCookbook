@@ -1,9 +1,10 @@
-﻿using CookieCookbook;
-using CookieCookbook.PrintIngredients;
-using CookieCookbook.PrintRecipes;
+﻿using CookieCookbook.App;
+using CookieCookbook.DataAccess;
+using CookieCookbook.FileAccess;
 using CookieCookbook.Recipes;
 using CookieCookbook.Recipes.Ingredients;
-using CookieCookbook.RecipesUserInteraction;
+using CookieCookbook.PrintIngredients;
+using CookieCookbook.PrintRecipes;
 using CookieCookbook.StoreRecipes;
 
 
@@ -32,73 +33,6 @@ var cookiesRecipesApp = new CookiesRecipesApp(
 // Run application
 cookiesRecipesApp.Run(fileMetadata.ToPath());
 
-
-public class FileMetaData
-{
-    public string Name { get; }
-    public FileFormat Format { get; }
-    public FileMetaData(string name, FileFormat fileFormat)
-    {
-        Name = name;
-        Format = fileFormat;
-    }
-
-    public string ToPath() => $"{Name}.{Format.AsFileExtension()}";
-}
-
-public static class FileFormatExtensions
-{
-    public static string AsFileExtension(this FileFormat fileFormat) =>
-        fileFormat == FileFormat.Json ? "json" : "txt";
-}
-
-public enum FileFormat
-{
-    Json,
-    Txt 
-}
-    
-public class CookiesRecipesApp
-{
-    private readonly IRecipesRepository _recipesRepository;
-    private readonly IRecipesUserInteraction _recipesUserInteraction;
-    
-    public CookiesRecipesApp(
-        IRecipesRepository recipesRepository,
-        IRecipesUserInteraction recipesUserInteraction)
-    {
-        _recipesRepository = recipesRepository;
-        _recipesUserInteraction = recipesUserInteraction;
-    }
-    public void Run(string filePath)
-    {
-        var allRecipes = _recipesRepository.Read(filePath);
-        _recipesUserInteraction.PrintExistingRecipes(allRecipes);
-
-        _recipesUserInteraction.PromptToCreateRecipe();
-
-        var ingredients = _recipesUserInteraction.ReadIngredientsFromUser();
-
-        // high level design
-        if (ingredients.Count() > 0)
-        {
-            var recipe = new CookieCookbook.Recipes.Recipe(ingredients);
-            allRecipes.Add(recipe);
-            _recipesRepository.Write(filePath, allRecipes); // should use the print recipes class actually
-
-            _recipesUserInteraction.ShowMessage("Recipe added:");
-            _recipesUserInteraction.ShowMessage(recipe.ToString());
-        }
-        else
-        {
-            _recipesUserInteraction.ShowMessage(
-                "No ingredients have been selected. " +
-                "Recipe will not be saved.");
-        }
-
-        _recipesUserInteraction.Exit();
-    }
-
     // FIRST SOLUTION ITERATION
     //Console.WriteLine("Create a new cookie recipe! Available ingredients are:\n");
 
@@ -113,6 +47,5 @@ public class CookiesRecipesApp
     //{
     //    Console.WriteLine($"\nExisting recipes are: " + store.FullPath + $"\nFile: \n" + File.ReadAllText(StoreRecipesInFile.FileName));
     //}
-}
 
 

@@ -2,7 +2,7 @@
 
 namespace CookieCookbook.Recipes
 {
-   public class Recipe
+    public class Recipe
     {
         public IEnumerable<Ingredient> Ingredients { get; }
 
